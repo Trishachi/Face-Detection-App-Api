@@ -15,8 +15,8 @@ const db = knex({
     host: "127.0.0.1", //localhost
     user: "postgres",
     password: "password",
-    database: "smart-brain"
-  }
+    database: "smart-brain",
+  },
 });
 
 const app = express();
@@ -49,6 +49,11 @@ app.get("/profile/:id", (req, res) => {
 //image -- > PUT --> user
 app.put("/image", (req, res) => {
   image.handleImage(req, res, db);
+});
+
+//New endpoint for image to hadle API security
+app.post("/imageurl", (req, res) => {
+  image.handleApiCall(req, res);
 });
 
 app.listen(3000, () => {
